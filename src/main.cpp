@@ -6,10 +6,9 @@
 
 
 #include <Arduino.h>
-#include <SPI.h>
-#include <Wire.h>
-
-#define LED_BUILTIN 2
+#include "example_Timer.cpp"
+#include "example_SPI.cpp"
+#include "example_I2C.cpp"
 
 
 void setup() {

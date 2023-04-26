@@ -1,18 +1,20 @@
 #include <Arduino.h>
 #include <HardwareTimer.h>
 
-HardwareTimer timer = HardwareTimer(TIM2);
+HardwareTimer* timer = new HardwareTimer(TIM2);
 
-void timerCallback()
+
+void update()
 {
-  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+  // do something
+
 }
 
-void configureTimer()
+void initTimer()
 {
-  timer.setMode(1, TIMER_OUTPUT_COMPARE, PA0);
-  timer.setOverflow(1000000, HERTZ_FORMAT);
-  timer.attachInterrupt(1, timerCallback);
-  timer.refresh();
-  timer.resume();
+  timer->setPrescaleFactor(32000);
+  timer->setOverflow(1, HERTZ_FORMAT);
+  timer->attachInterrupt(update);
+  timer->resume();
 }
+
